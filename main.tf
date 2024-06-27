@@ -20,9 +20,9 @@ module "eks" {
   source                        = "./modules/eks"
   region                        = var.region
   cluster_name                  = var.cluster_name
-  vpc_id = local.vpc_id # var.vpc_id != "" ? var.vpc_id : module.vpc.vpc_id
+  vpc_id                        = local.vpc_id
   cidr_block                    = var.cidr_block
-  subnet_ids = local.subnet_ids #var.vpc_id != "" ? var.subnet_ids : module.vpc.private_subnet_ids
+  subnet_ids                    = local.subnet_ids
   launch_template_ami_image_id  = var.launch_template_ami_image_id
   launch_template_instance_type = var.launch_template_instance_type
   launch_template_key_name      = var.launch_template_key_name
