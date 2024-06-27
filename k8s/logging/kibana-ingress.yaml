@@ -4,9 +4,9 @@ metadata:
   name: kibana-ingress
   namespace: kube-logging
   annotations:
-    alb.ingress.kubernetes.io/load-balancer-name: kibana-botmoon                      # edit here
+    alb.ingress.kubernetes.io/load-balancer-name: kibana-xxxxx                      # edit here
     alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-TLS13-1-2-Res-2021-06     # edit here
-    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-southeast-1:471112915552:certificate/88826a5b-573a-423d-ab93-94f5492dc352   # edit here
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-southeast-1:xxxxx:certificate/xxxxx   # edit here
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
@@ -15,7 +15,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-  - host: kibana.botmoon.ditme.cloud
+  - host: kibana.xxxxx.xxxxx.cloud      # edit here
     http:
       paths:
       - path: /
