@@ -1,0 +1,19 @@
+sudo apt update
+sudo apt upgrade
+
+
+## terraform
+wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+sudo apt update && sudo apt install terraform
+
+### aws cli
+sudo apt install python3-pip
+sudo pip install awscli
+aws --version
+
+### helm  # https://github.com/helm/helm/releases
+wget https://get.helm.sh/helm-v3.15.2-linux-arm64.tar.gz
+tar -zxvf https://get.helm.sh/helm-v3.15.2-linux-arm64.tar.gz
+mv linux-amd64/helm /usr/local/bin/helm
+helm version
