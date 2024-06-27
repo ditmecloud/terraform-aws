@@ -5,9 +5,9 @@ helm repo update
 
 ### edit *-values.yaml
 
-helm -n kube-logging upgrade elk-elasticsearch elastic/elasticsearch -f elastic-values.yaml
-helm -n kube-logging upgrade elk-kibana elastic/kibana -f kibana-values.yaml
-helm -n kube-logging upgrade elk-logstash elastic/logstash -f logstash-values.yaml
+helm -n kube-logging install elk-elasticsearch elastic/elasticsearch -f elastic-values.yaml
+helm -n kube-logging install elk-kibana elastic/kibana -f kibana-values.yaml
+helm -n kube-logging install elk-logstash elastic/logstash -f logstash-values.yaml
 
 ###
 kubectl -n kube-logging port-forward svc/elk-kibana-kibana 5601:5601
