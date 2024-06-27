@@ -1,0 +1,21 @@
+kubectl create ns kube-logging
+
+helm repo add elastic https://helm.elastic.co
+helm repo update
+
+### edit *-values.yaml
+
+helm -n kube-logging upgrade elk-elasticsearch elastic/elasticsearch -f elastic-values.yaml
+helm -n kube-logging upgrade elk-kibana elastic/kibana -f kibana-values.yaml
+helm -n kube-logging upgrade elk-logstash elastic/logstash -f logstash-values.yaml
+
+###
+kubectl -n kube-logging port-forward svc/elk-kibana-kibana 5601:5601
+
+### edit kibana-ingress.yaml
+kubectl -n kube-logging apply -f kibana-ingress.yaml
+kubectl -n kube-logging get ingress
+
+#####
+kubectl -n kube-logging get all,configmap,secret,serviceaccount,role,rolebinding -l app=kibana
+kubectl -n kube-logging delete all,configmap,secret,serviceaccount,role,rolebinding -l app=kibana

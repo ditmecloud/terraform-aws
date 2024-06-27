@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kibana-ingress
+  namespace: kube-logging
+  annotations:
+    alb.ingress.kubernetes.io/load-balancer-name: kibana-botmoon                      # edit here
+    alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-TLS13-1-2-Res-2021-06     # edit here
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-southeast-1:471112915552:certificate/88826a5b-573a-423d-ab93-94f5492dc352   # edit here
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+    alb.ingress.kubernetes.io/ssl-redirect: "443"
+    alb.ingress.kubernetes.io/load-balancer-attributes: routing.http2.enabled=true,idle_timeout.timeout_seconds=600
+spec:
+  ingressClassName: alb
+  rules:
+  - host: kibana.botmoon.ditme.cloud
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: elk-kibana-kibana
+            port:
+              number: 5601
