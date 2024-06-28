@@ -1,6 +1,6 @@
 ## launch template
 resource "aws_launch_template" "eks_launch_template" {
-  name          = "${var.cluster_name}-eks-node"
+  name          = "${var.cluster_name}-node"
   image_id      = var.launch_template_ami_image_id
   instance_type = var.launch_template_instance_type
   key_name      = var.launch_template_key_name

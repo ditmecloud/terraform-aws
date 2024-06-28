@@ -30,7 +30,7 @@ resource "aws_security_group_rule" "eks_ingress_cluster_https_rule" {
 ## node
 
 resource "aws_security_group" "eks_security_group_node" {
-  name        = "${var.cluster_name}-eks-node"
+  name        = "${var.cluster_name}-node"
   description = "security group for eks nodes"
   vpc_id      = var.vpc_id
 
@@ -42,7 +42,7 @@ resource "aws_security_group" "eks_security_group_node" {
   }
 
   tags = {
-    Name    = "${var.cluster_name}-eks-node"
+    Name    = "${var.cluster_name}-node"
     Project = var.cluster_name
   }
 }
