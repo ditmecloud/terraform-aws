@@ -3,6 +3,10 @@ kubectl create ns kube-logging
 helm repo add elastic https://helm.elastic.co
 helm repo update
 
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm install prometheus prometheus-community/kube-prometheus-stack -n kube-monitoring --create-namespace
+
+
 ### edit *-values.yaml
 
 helm -n kube-logging install elk-elasticsearch elastic/elasticsearch -f elastic-values.yaml
